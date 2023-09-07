@@ -1,6 +1,8 @@
-require('./photo')
+require('./photo_handler')
 
-class Photos
+class PhotosList
+  include PhotoHandler
+
   attr_reader :photos
 
   def initialize(list)
@@ -11,9 +13,11 @@ class Photos
     city_groups = group_by_city
     city_groups = assign_numbers_and_rename(city_groups)
 
-    photo_names_list = Photo.extract_names(city_groups)
+    photo_names_list = extract_names(city_groups)
     photo_names_list.join("\n")
   end
+
+  private
 
   def group_by_city
     city_groups = Hash.new { |hash, key| hash[key] = [] }
@@ -33,7 +37,7 @@ class Photos
 
       photo_list.each_with_index do |photo, index|
         idx, _, timestamp = photo
-        new_name = Photo.construct_name(city_groups, city, photo, index)
+        new_name = construct_name(city_groups, city, photo, index)
 
         city_groups[city][index] = [idx, new_name, timestamp]
       end

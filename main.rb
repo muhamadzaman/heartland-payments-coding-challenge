@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require('./photos')
+require('./photos_list')
 
 INPUT_STRING = "photo.jpg, Krakow, 2013-09-05 14:08:15
 Mike.png, London, 2015-06-20 15:13:22
@@ -18,5 +18,5 @@ e.png, Krakow, 2016-01-02 09:49:09
 f.png, Krakow, 2016-01-02 10:55:32
 g.jpg, Krakow, 2016-02-29 22:13:11"
 
-photos = Photos.new(INPUT_STRING).organize
+photos = PhotosList.new(INPUT_STRING).organize
 puts photos

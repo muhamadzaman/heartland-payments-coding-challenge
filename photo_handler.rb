@@ -1,5 +1,7 @@
-class Photo
-  def self.construct_name(city_groups, city, photo, index)
+module PhotoHandler
+  private
+
+  def construct_name(city_groups, city, photo, index)
     max_length = city_groups[city].size.to_s.length
     _, name = photo
     natural_number = (index + 1).to_s.rjust(max_length, '0')
@@ -7,7 +9,7 @@ class Photo
     "#{city}#{natural_number}.#{name.split('.').last}"
   end
 
-  def self.extract_names(city_groups)
+  def extract_names(city_groups)
     new_list = city_groups.values.flat_map do |group|
       group.map { |idx, name| [idx, name] }
     end
